@@ -17,10 +17,9 @@ melihat konsistensi pola overhead.
 adalah dataset transaksi e-commerce Vesta yang digunakan dalam kompetisi
 Kaggle tahun 2019. Data berlabel berisi 590.540 transaksi, termasuk 20.663 fraud.
 
-CSV lokal diperoleh dari [mirror Hugging Face](https://huggingface.co/datasets/aliceczr/ieee-fraud-detection/tree/c908df307713c748cc348e3049369f16333e2b5c).
-Checksum dicatat dalam [models.json](models.json); kesamaan byte dengan CSV
-resmi Kaggle belum diperiksa. Data uji bersama terdiri atas 13.361 transaksi
-yang berada dalam test kedua model, termasuk 475 fraud.
+Checksum berkas yang digunakan dicatat dalam [models.json](models.json).
+Data uji bersama terdiri atas 13.361 transaksi yang berada dalam test
+kedua model, termasuk 475 fraud.
 
 ## Model
 
@@ -63,6 +62,44 @@ Latency adalah waktu seluruh 128 transaksi; overhead dihitung per transaksi.
 [Ringkasan pilot CSV](results/pilot/Ringkasan%20Pilot.csv).
 Hasil ini digunakan untuk memeriksa jalannya program. Pengambilan data utama
 akan dilakukan pada sesi terpisah dengan replikasi yang lebih banyak.
+
+## File program
+
+| File | Fungsi |
+| --- | --- |
+| [benchmark.py](scripts/benchmark.py) | Mengukur inferensi XGBoost tanpa dan dengan TreeSHAP. |
+| [model_registry.py](scripts/model_registry.py) | Memuat model dan memeriksa checksum, struktur, serta urutan fitur. |
+| [ieee_data.py](scripts/ieee_data.py) | Memuat data uji dan memilih transaksi untuk benchmark. |
+| [prepare_ieee.py](scripts/prepare_ieee.py) | Membentuk fitur M1 mengikuti pengolahan data sumber. |
+| [prepare_shared.py](scripts/prepare_shared.py) | Membentuk paket fitur kedua model pada transaksi uji bersama. |
+| [validate_functional.py](scripts/validate_functional.py) | Memeriksa prediksi A/B dan penjumlahan SHAP terhadap raw margin. |
+| [verify_artifact.py](scripts/verify_artifact.py) | Memeriksa pemuatan model dengan masukan sintetis. |
+| [analyze_results.py](scripts/analyze_results.py) | Menghitung ringkasan dan analisis statistik sesuai jenis sesi. |
+| [quality_checks.py](scripts/quality_checks.py) | Memeriksa kelengkapan dan diagnostik hasil pengukuran. |
+| [export_readable.py](scripts/export_readable.py) | Mengekspor ringkasan hasil pengukuran. |
+| [models.json](models.json) | Mencatat sumber, checksum, fitur, dan struktur model. |
+| [protocol.json](protocol.json) | Menyimpan aturan pengukuran dan analisis. |
+| [requirements.txt](requirements.txt) | Mencantumkan versi pustaka Python. |
+| [Dockerfile](Dockerfile) | Membangun image program benchmark. |
+| [Dockerfile.runtime](Dockerfile.runtime) | Membangun image dependensi Python. |
+| [run-docker.ps1](run-docker.ps1) | Menjalankan benchmark melalui Docker dan menyimpan hasil. |
+| [.dockerignore](.dockerignore) | Mengatur berkas yang dikecualikan dari build Docker. |
+| [.gitignore](.gitignore) | Mengatur berkas lokal yang tidak dilacak Git. |
+| [.gitattributes](.gitattributes) | Mengatur penanganan format teks oleh Git. |
+| [README.md](README.md) | Menjelaskan penelitian, sumber, dan penggunaan program. |
+
+## File hasil pilot
+
+Berkas berada di folder [results/pilot](results/pilot).
+
+| File | Isi |
+| --- | --- |
+| [Ringkasan Pilot.csv](results/pilot/Ringkasan%20Pilot.csv) | Rerata metrik untuk delapan kombinasi model dan batch; dapat dibuka di Excel. |
+| [benchmark_raw.csv](results/pilot/benchmark_raw.csv) | Hasil tiap pengukuran A atau B, sebanyak 32 pengamatan. |
+| [benchmark_pairs.csv](results/pilot/benchmark_pairs.csv) | Hasil 16 pasangan A/B, selisih waktu, serta nilai CPU dan memori tiap skenario. |
+| [run_manifest.json](results/pilot/run_manifest.json) | Konfigurasi sesi, identitas model, serta checksum data dan kode. |
+| [M1_manifest.json](results/pilot/M1_manifest.json) | Struktur M1, lingkungan eksekusi, warm-up, dan catatan pengukurannya. |
+| [M2_manifest.json](results/pilot/M2_manifest.json) | Struktur M2, lingkungan eksekusi, warm-up, dan catatan pengukurannya. |
 
 ## Menjalankan
 
