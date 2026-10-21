@@ -1,0 +1,24 @@
+# Model weights, prepared data, and source-specific preprocessing stay local.
+/models/
+/resources/
+/data/
+/dataset/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.ubj
+*.zip
+*.log
+*.docx
+*.pdf
+~$*
+/laporan-lokal/
+/hasil-lokal/
+Thumbs.db
+.DS_Store

@@ -1,0 +1,184 @@
+{
+  "model_id": "M2",
+  "status": "complete",
+  "prepared_manifest_sha256": "25c78a35f29b6e769db5a4eb4650aec1a89a678bfbebf154473cf458e259dae8",
+  "workload_sha256": "a945b3b92599f9f26ebc97d5481bcbd0d0a7d6cbaced49fb07d82a38380587ff",
+  "structure": {
+    "trees": 400,
+    "nodes": 40534,
+    "leaves": 20467,
+    "max_depth": 6,
+    "mean_depth": 6.0
+  },
+  "environment": {
+    "versions": {
+      "python": "3.12.15",
+      "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+      "numpy": "2.5.4",
+      "pandas": "3.0.6",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.8.0",
+      "xgboost": "3.1.3",
+      "shap": "0.50.0",
+      "psutil": "7.2.2",
+      "joblib": "1.6.0"
+    },
+    "pid": 9,
+    "cpu_clock": {
+      "name": "time.process_time_ns",
+      "resolution_s": 1e-09,
+      "implementation": "clock_gettime(CLOCK_PROCESS_CPUTIME_ID)"
+    },
+    "thread_environment": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OMP_WAIT_POLICY": "PASSIVE"
+    },
+    "host_logical_cpus": 4,
+    "host_memory_bytes": 8328425472,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "cpu_max": "200000 100000",
+    "memory_max": "4294967296",
+    "memory_swap_max": "0",
+    "container_marker": true
+  },
+  "calibration": {
+    "rows": 128,
+    "shap_shape": [
+      128,
+      42
+    ],
+    "max_additivity_error": 3.814697265625e-06
+  },
+  "runtime_n_jobs": 2,
+  "input_features": [
+    "TransactionAmt",
+    "TransactionDT",
+    "card1",
+    "card2",
+    "card3",
+    "card5",
+    "addr1",
+    "addr2",
+    "dist1",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13",
+    "D14",
+    "D15",
+    "ProductCD",
+    "card4",
+    "card6",
+    "P_emaildomain"
+  ],
+  "feature_matrix_sha256": "c3cb1d3226f6009d47c3fc90411a1dd305b646a7f9586acdc63bc30ad60fe6f0",
+  "runtime_booster": {
+    "nthread": 2,
+    "device": "cpu"
+  },
+  "started_utc": "2026-10-19T05:25:03.406909+00:00",
+  "progress": {
+    "phase": "measurement",
+    "batch_size": 100
+  },
+  "warmup_orders": {
+    "1": [
+      "BA"
+    ],
+    "10": [
+      "AB"
+    ],
+    "50": [
+      "BA"
+    ],
+    "100": [
+      "BA"
+    ]
+  },
+  "warmup_measurements": [
+    {
+      "batch_size": 1,
+      "warmup_index": 1,
+      "scenario": "B",
+      "latency_s": 0.5686098889999869
+    },
+    {
+      "batch_size": 1,
+      "warmup_index": 1,
+      "scenario": "A",
+      "latency_s": 0.05769497699998283
+    },
+    {
+      "batch_size": 10,
+      "warmup_index": 1,
+      "scenario": "A",
+      "latency_s": 0.010476970999974355
+    },
+    {
+      "batch_size": 10,
+      "warmup_index": 1,
+      "scenario": "B",
+      "latency_s": 0.24454275200000097
+    },
+    {
+      "batch_size": 50,
+      "warmup_index": 1,
+      "scenario": "B",
+      "latency_s": 0.2328575889999911
+    },
+    {
+      "batch_size": 50,
+      "warmup_index": 1,
+      "scenario": "A",
+      "latency_s": 0.0033404579999967154
+    },
+    {
+      "batch_size": 100,
+      "warmup_index": 1,
+      "scenario": "B",
+      "latency_s": 0.2371176880000121
+    },
+    {
+      "batch_size": 100,
+      "warmup_index": 1,
+      "scenario": "A",
+      "latency_s": 0.0027902719999985948
+    }
+  ],
+  "cgroup_end": {
+    "cpu.stat": "usage_usec 11330196\nuser_usec 10345309\nsystem_usec 984886\nnice_usec 0\nnr_periods 90\nnr_throttled 2\nthrottled_usec 6182\nnr_bursts 0\nburst_usec 0",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "memory.peak": "318836736"
+  },
+  "finished_utc": "2026-10-19T05:25:08.044672+00:00"
+}

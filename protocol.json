@@ -1,0 +1,92 @@
+{
+  "protocol": "IEEE-CIS paired XGBoost / TreeSHAP, journal + public cases",
+  "status": "revised design for a NEW session; old two-seed results are separate",
+  "primary_case": "M1 Kang and Kim 2026 seed42",
+  "consistency_case": "M2 FraudLens public frozen model",
+  "rows": 1000,
+  "source_test_rows": 13361,
+  "sampling_seed": 42,
+  "sampling": "without replacement from 13,361 common held-out TransactionIDs, no class balancing; same ordered IDs across both cases",
+  "features": {
+    "M1": 154,
+    "M2": 42
+  },
+  "dtype": "float32",
+  "batch_sizes": [
+    1,
+    10,
+    50,
+    100
+  ],
+  "pairs_per_model_batch": 30,
+  "warmups_per_scenario_model_batch": 5,
+  "scenario_orders_per_model_batch": {
+    "AB": 15,
+    "BA": 15
+  },
+  "scenario_A": "batch slicing, ordered prepared-input adapter, XGBoost probabilities",
+  "scenario_B": "scenario A plus TreeSHAP for every transaction",
+  "excluded": [
+    "CSV read and join",
+    "history features",
+    "frequency encoding",
+    "imputation",
+    "sampling",
+    "model load",
+    "explainer initialization",
+    "functional validation",
+    "Coverage aggregation",
+    "CSV writes",
+    "statistical analysis"
+  ],
+  "explainer": {
+    "type": "TreeExplainer",
+    "feature_perturbation": "tree_path_dependent",
+    "model_output": "raw",
+    "timed_check_additivity": false
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_gib": 4,
+    "swap_bytes": 0,
+    "inference_threads": 2,
+    "OMP_WAIT_POLICY": "PASSIVE"
+  },
+  "expected_main_measurements": 480,
+  "expected_pairs": 240,
+  "expected_warmup_executions": 80,
+  "analysis": {
+    "family": "2 models x 4 batches x latency/CPU/RSS",
+    "tests": 24,
+    "alternative": "two-sided",
+    "multiplicity": "global Holm",
+    "bootstrap": "5000 percentile resamples, seed42; pointwise mean-difference CI",
+    "cross_model_comparison": "descriptive pattern consistency only; training protocols and feature sets differ"
+  },
+  "limitations": [
+    "historical benchmark",
+    "public mirror not byte-verified against official Kaggle download",
+    "source history fallback uses global amount median",
+    "prepared-feature timing excludes full raw pipeline",
+    "shared allocator affects observed RSS",
+    "sequential blocks and one host limit generalization",
+    "different training splits and feature sets prevent causal attribution of between-model differences",
+    "no verified journal publication or explicit repository license for FraudLens; usage terms remain to be clarified"
+  ],
+  "measurement_schema_version": 5,
+  "supplemental_metrics": [
+    "process CPU time seconds, not an additional hypothesis family"
+  ],
+  "quality_review": {
+    "latency_cv_pct": 10,
+    "early10_late10_and_AB_BA_median_change_pct": 10,
+    "modified_z_score": 3.5,
+    "absolute_lag1_correlation_spearman_rho_bowley_skewness": 0.5,
+    "threshold_role": "descriptive review, not automatic removal or proof of validity"
+  },
+  "cpu_clock": {
+    "method": "time.process_time_ns",
+    "definition": "process-wide user + system CPU time",
+    "resolution": "recorded per worker, not assumed to equal accuracy"
+  }
+}
