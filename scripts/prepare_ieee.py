@@ -1,6 +1,6 @@
-"""Offline IEEE-CIS feature reconstruction; never trains or overwrites a model.
-Reviewed functions adapted from the verified feasibility tool, with original
-feature arithmetic preserved. Requires the pinned pandas 3 runtime.
+"""Reconstruct IEEE-CIS features from the Kang and Kim preprocessing code.
+Feature construction runs offline using the published feature list.
+Requires the pinned pandas 3 runtime.
 """
 from __future__ import annotations
 

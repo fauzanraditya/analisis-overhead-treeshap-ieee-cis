@@ -40,7 +40,7 @@ def validate_measurements(manifest,raw,pairs):
     elif manifest['schema_version']>=4:raise ValueError('Missing measured CPU time')
 
 def validate_formal_evidence(run_dir,manifest):
-    require(manifest['schema_version']>=4,'Formal analysis requires audited schema 4; old pilot is descriptive only')
+    require(manifest['schema_version']>=4,'Formal analysis requires manifest schema 4 or later')
     args=manifest['arguments']
     snapshot=(run_dir/'execution_snapshot').resolve()
     for relative,expected in manifest['code_sha256'].items():

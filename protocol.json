@@ -1,6 +1,6 @@
 {
-  "protocol": "IEEE-CIS paired XGBoost / TreeSHAP, journal + public cases",
-  "status": "revised design for a NEW session; old two-seed results are separate",
+  "protocol": "IEEE-CIS paired XGBoost and TreeSHAP benchmark",
+  "status": "main experiment pending",
   "primary_case": "M1 Kang and Kim 2026 seed42",
   "consistency_case": "M2 FraudLens public frozen model",
   "rows": 1000,

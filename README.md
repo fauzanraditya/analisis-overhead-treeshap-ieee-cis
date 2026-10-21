@@ -10,9 +10,8 @@ Metrik yang dicatat adalah latency, throughput, penggunaan CPU, puncak RSS
 dan Top-5 SHAP Coverage. Pengujian dilakukan pada dua model untuk melihat
 konsistensi pola overhead pada masing-masing ukuran batch.
 
-**Tahap penelitian, 21 Oktober 2026:** uji fungsi dan pilot selesai; data utama
-belum diambil. Proposal Word dan ringkasan pilot CSV disampaikan terpisah
-sebagai lampiran bimbingan.
+**Status, 21 Oktober 2026:** uji fungsi dan pilot selesai. Data utama belum
+diambil.
 
 ## Dataset dan model
 
@@ -20,7 +19,7 @@ sebagai lampiran bimbingan.
 | --- | --- | --- |
 | Dataset | IEEE-CIS Fraud Detection, kompetisi 2019 | Data transaksi e-commerce Vesta; 590.540 transaksi berlabel, 20.663 fraud |
 | M1 | XGBoost teacher Kang dan Kim (2026), seed 42 | 3.000 pohon, kedalaman maksimum 7, 154 fitur; kasus utama dari lampiran jurnal |
-| M2 | XGBoost FraudLens, revisi tetap | 400 pohon, kedalaman maksimum 6, 42 fitur; kasus tambahan dari repositori publik |
+| M2 | XGBoost FraudLens | 400 pohon, kedalaman maksimum 6, 42 fitur; kasus tambahan dari repositori publik |
 
 IEEE-CIS digunakan sebagai benchmark historis. Paket uji berisi 13.361
 transaksi yang termasuk dalam data test kedua model, dengan 475 transaksi
@@ -50,7 +49,7 @@ model dicatat dalam [models.json](models.json).
 
 ### Sumber M2
 
-[FraudLens pada revisi 74162be78808aa2dd3a0def581d2a28c626929c4](https://github.com/praju120056/FraudLens/tree/74162be78808aa2dd3a0def581d2a28c626929c4).
+[Repositori FraudLens pada versi yang digunakan](https://github.com/praju120056/FraudLens/tree/74162be78808aa2dd3a0def581d2a28c626929c4).
 [Berkas model asli](https://github.com/praju120056/FraudLens/blob/74162be78808aa2dd3a0def581d2a28c626929c4/backend/model/model.pkl).
 
 Publikasi jurnal untuk model ini belum ditemukan. Model sumber dalam bundle
