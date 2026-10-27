@@ -44,9 +44,11 @@ tanpa mengunggah ulang bobot model dan preprocessing.
 
 ## Hasil pilot
 
-Uji pendahuluan menggunakan 1.000 transaksi per replikasi, enam pasangan A/B
+Uji pendahuluan menggunakan 1.000 transaksi yang sama pada setiap replikasi, enam pasangan A/B
 untuk setiap kombinasi model dan batch, serta satu warm-up per skenario.
 Setiap kombinasi terdiri atas tiga urutan AB dan tiga BA.
+Delapan kombinasi menghasilkan 48 pasangan atau 96 pengamatan di luar warm-up.
+Setiap baris tabel dan CSV ringkasan memuat rerata enam pasangan untuk satu kombinasi.
 Latency adalah waktu seluruh 1.000 transaksi; overhead dihitung per transaksi.
 
 | Model | Batch | Latency A (s) | Latency B (s) | Overhead (ms/transaksi) |
@@ -61,8 +63,10 @@ Latency adalah waktu seluruh 1.000 transaksi; overhead dihitung per transaksi.
 | M2 | 100 | 0.0096 | 2.0022 | 1.9925 |
 
 [Ringkasan pilot CSV](results/pilot/Ringkasan%20Pilot.csv).
-Hasil ini digunakan untuk memeriksa jalannya program dan variasi awal pengukuran. Pengambilan data utama
-akan dilakukan pada sesi terpisah dengan replikasi yang lebih banyak.
+Hasil pilot dianalisis secara deskriptif untuk memeriksa jalannya program dan
+variasi awal pengukuran. Pengambilan data utama dan pengujian hipotesis belum
+dilakukan. Sesi utama direncanakan memakai 1.000 transaksi dengan 30 pasangan
+per kombinasi model dan batch.
 CV latency baseline berkisar 4,86–31,49% pada delapan kombinasi, sehingga
 variasinya masih perlu ditinjau sebelum pengambilan data utama.
 
