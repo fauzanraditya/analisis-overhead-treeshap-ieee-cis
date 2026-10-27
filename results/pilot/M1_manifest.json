@@ -2,7 +2,7 @@
   "model_id": "M1",
   "status": "complete",
   "prepared_manifest_sha256": "25c78a35f29b6e769db5a4eb4650aec1a89a678bfbebf154473cf458e259dae8",
-  "workload_sha256": "a945b3b92599f9f26ebc97d5481bcbd0d0a7d6cbaced49fb07d82a38380587ff",
+  "workload_sha256": "83d04a9f10e50f77769fe723803e8e6b3801826a5199fefe404dadf5dd05b632",
   "structure": {
     "trees": 3000,
     "nodes": 343560,
@@ -23,7 +23,7 @@
       "psutil": "7.2.2",
       "joblib": "1.6.0"
     },
-    "pid": 30,
+    "pid": 62,
     "cpu_clock": {
       "name": "time.process_time_ns",
       "resolution_s": 1e-09,
@@ -213,12 +213,12 @@
     "V285",
     "V279"
   ],
-  "feature_matrix_sha256": "783e75939f6cfddf26ae1bc81208abbaf056811165b701066bd1d2bbc9885d76",
+  "feature_matrix_sha256": "1f8114a6042beaf8bcabf7d7e62be05088d2edcabeca0749fcd4e3810af31506",
   "runtime_booster": {
     "nthread": 2,
     "device": "cpu"
   },
-  "started_utc": "2026-10-19T05:25:16.052351+00:00",
+  "started_utc": "2026-10-27T06:22:22.904588+00:00",
   "progress": {
     "phase": "measurement",
     "batch_size": 100
@@ -228,7 +228,7 @@
       "BA"
     ],
     "10": [
-      "AB"
+      "BA"
     ],
     "50": [
       "BA"
@@ -242,55 +242,55 @@
       "batch_size": 1,
       "warmup_index": 1,
       "scenario": "B",
-      "latency_s": 6.157117549999981
+      "latency_s": 45.900960177
     },
     {
       "batch_size": 1,
       "warmup_index": 1,
       "scenario": "A",
-      "latency_s": 0.2891878869999971
-    },
-    {
-      "batch_size": 10,
-      "warmup_index": 1,
-      "scenario": "A",
-      "latency_s": 0.04613129300000196
+      "latency_s": 2.3303808440000466
     },
     {
       "batch_size": 10,
       "warmup_index": 1,
       "scenario": "B",
-      "latency_s": 2.632743191000003
+      "latency_s": 23.14702179400001
+    },
+    {
+      "batch_size": 10,
+      "warmup_index": 1,
+      "scenario": "A",
+      "latency_s": 0.3587231089998113
     },
     {
       "batch_size": 50,
       "warmup_index": 1,
       "scenario": "B",
-      "latency_s": 2.5851257280000084
+      "latency_s": 23.27893430900008
     },
     {
       "batch_size": 50,
       "warmup_index": 1,
       "scenario": "A",
-      "latency_s": 0.017737232999991193
+      "latency_s": 0.1044988020000801
     },
     {
       "batch_size": 100,
       "warmup_index": 1,
       "scenario": "B",
-      "latency_s": 2.6517904909999856
+      "latency_s": 21.81580562199997
     },
     {
       "batch_size": 100,
       "warmup_index": 1,
       "scenario": "A",
-      "latency_s": 0.010903480999985504
+      "latency_s": 0.05840229300019928
     }
   ],
   "cgroup_end": {
-    "cpu.stat": "usage_usec 91689380\nuser_usec 89499258\nsystem_usec 2190122\nnice_usec 0\nnr_periods 604\nnr_throttled 74\nthrottled_usec 222270\nnr_bursts 0\nburst_usec 0",
+    "cpu.stat": "usage_usec 1433253043\nuser_usec 1420619049\nsystem_usec 12633993\nnice_usec 0\nnr_periods 9028\nnr_throttled 2987\nthrottled_usec 2017386\nnr_bursts 0\nburst_usec 0",
     "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
-    "memory.peak": "645439488"
+    "memory.peak": "1089859584"
   },
-  "finished_utc": "2026-10-19T05:25:59.476653+00:00"
+  "finished_utc": "2026-10-27T06:35:46.802368+00:00"
 }

@@ -5,19 +5,19 @@
   "run_kind": "pilot",
   "arguments": {
     "data": "/data",
-    "rows": 128,
+    "rows": 1000,
     "batch_sizes": [
       1,
       10,
       50,
       100
     ],
-    "replications": 2,
+    "replications": 6,
     "warmups": 1,
     "seed": 42,
     "cpu_limit": 2,
     "run_kind": "pilot",
-    "output_dir": "/out/Pilot_Integrasi",
+    "output_dir": "/out/20261027_132041_7327e15a_ieee_pilot",
     "worker": null
   },
   "models": {
@@ -312,10 +312,10 @@
   "code_sha256": {
     "Dockerfile": "0fef7d0a0fe18f044fcadd487c04cf598a922889b602e4bd397572b77c530886",
     "Dockerfile.runtime": "2f43338d99d9bbada16348577b1cae0b6961a92f537f76e83984de07292f0b9c",
-    "protocol.json": "d3f2523c5ec53b7487a3d1f918502729979cd181da5820b899171b713cb0acb7",
+    "protocol.json": "e69fba48fa0c0e0ab9c52ccd49c4c3a9d06fae45bb82793d0a81ac8a6929d288",
     "requirements.txt": "6be852985c77be27aa4ea25d3abffd3f9eca248490e29565ca717972e4fb4fd1",
     "models.json": "e7ff488c18c7524135d9e7a57b8493bd9889535a89b9d2743bfbd9f7bd1ed3f3",
-    "run-docker.ps1": "47c9e0375497bf354b259800245d02fd1ecf2b44552a66210437ad3154d250d0",
+    "run-docker.ps1": "bf9cd8103fa8c90f245c6a3a013d053e9608a9756b4f899a910211403d175bb6",
     "resources/config.json": "08d048f8316d77b60171e35ba23770b3839ec70a89597c931e9d71dfd48e09b5",
     "resources/feature_groups.json": "6453053bfd1d768bb74fb266dbefe35229bd3a4bc6e01e4f198f755a944a4659",
     "resources/fraudlens_preprocessing.json": "d67ad4810cb34cdff2c5ab8f772d4f1267c0ac99ba3f14349891fe28bb4a420e",
@@ -323,21 +323,22 @@
     "resources/prepared_manifest_template.json": "ca9b4eecb839833cce3d046bfff024a839fb424c64190bdb64dfad2419d7b018",
     "resources/run_ieee_cis_distilled_additive_v7_2_revision.py": "a5bc3fae1607dfa0d12fa72151ed1501e705516e837ce80ed8f13244e9d9c492",
     "resources/shared_manifest_template.json": "25c78a35f29b6e769db5a4eb4650aec1a89a678bfbebf154473cf458e259dae8",
-    "scripts/analyze_results.py": "a552e6fde4cda01fa84c2a5df3187f64da067c4406911d6093bd1232e0c40a9f",
+    "scripts/analyze_results.py": "6cdbf14253c3b3743aff3f57cf4e8ae9c220a7485451cf854240d5b85a12decb",
     "scripts/benchmark.py": "17f30453cdda3bbd7f049753788f5ec7a6043aab7b48652d03851663f6142ddf",
+    "scripts/export_readable.py": "f8351f8fe8f2673212c84a5c2e8e0ba81566cf7a835e5767730019d488a9f238",
     "scripts/ieee_data.py": "37d7b16725b19601fd9015b9d98f13dd7fc7be0fb440217b1cc155e104625bd6",
     "scripts/model_registry.py": "7c60453910fea685faf4da8ff74efe2e1e426f3dfa27a61401daf9cf546b1859",
-    "scripts/prepare_ieee.py": "eca8720b948f9044012838f03dc38f16ce40a2b6858710fc26ffdc2969eeccbf",
+    "scripts/prepare_ieee.py": "7d1e62f996de397567334c32ba9a60960e9ede16eb2bb94af5dd77566fb769b6",
     "scripts/prepare_shared.py": "64a59128bf42303afcd091bc91c1aeb397842139d543d74217a0883ff4e244bb",
-    "scripts/quality_checks.py": "12561daa4f37cca2b44e7773c49c6477d3a654836e1b235ab53eba0c2df5edf0",
+    "scripts/quality_checks.py": "1b1bb59ba8775bb9363c85f91cca72d01259fe9abf75667981a926b297dd9fd8",
     "scripts/validate_functional.py": "51262e681f2d83333a4e1491b5120834def26b3c547dc20d9fc56bf017b24e69",
     "scripts/verify_artifact.py": "c1c4152f244ed674301538edfdbc5f74ffb2a700cb5b9cd0f9edf1ddb91bfd7b"
   },
-  "started_utc": "2026-10-19T05:25:00.919037+00:00",
+  "started_utc": "2026-10-27T06:20:47.765362+00:00",
   "measurement_boundary": "Join, sorting, history features, frequency encoding and imputation are prepared offline; timed work starts at ordered float32 model inputs.",
   "measurement_note": "A fresh sequential child process per model; A/B reuse that process. CPU time is recorded separately from normalized utilization. Retained SHAP outputs and allocator state affect RSS. Native pilot is not a controlled Docker benchmark.",
-  "raw_rows": 32,
-  "pairs": 16,
-  "workload_sha256": "a945b3b92599f9f26ebc97d5481bcbd0d0a7d6cbaced49fb07d82a38380587ff",
-  "finished_utc": "2026-10-19T05:25:59.799729+00:00"
+  "raw_rows": 96,
+  "pairs": 48,
+  "workload_sha256": "83d04a9f10e50f77769fe723803e8e6b3801826a5199fefe404dadf5dd05b632",
+  "finished_utc": "2026-10-27T06:35:47.080634+00:00"
 }

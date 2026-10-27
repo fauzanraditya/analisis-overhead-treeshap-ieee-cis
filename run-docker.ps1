@@ -1,4 +1,12 @@
-param([string]$DataPath, [ValidateSet('pilot','formal')][string]$RunKind='pilot', [string]$Image='fraud-benchmark:ieee-cis', [switch]$SkipBuild)
+param(
+    [string]$DataPath,
+    [ValidateSet('pilot','formal')][string]$RunKind='pilot',
+    [string]$Image='fraud-benchmark:ieee-cis',
+    [switch]$SkipBuild,
+    [ValidateRange(1,1000000)][int]$PilotRows=1000,
+    [ValidateRange(1,10000)][int]$PilotPairs=2,
+    [ValidateRange(0,1000)][int]$PilotWarmups=1
+)
 $ErrorActionPreference = 'Stop'
 $taskRoot = $PSScriptRoot
 if (-not $DataPath) {
@@ -20,7 +28,9 @@ $dockerArguments = @('create', '--name', $containerName, '--cpus=2', '--memory=4
     '--mount', "type=bind,source=$resolvedData,target=/data,readonly",
     '--mount', "type=bind,source=$resolvedResults,target=/out", $Image,
     'python', 'scripts/benchmark.py', '--data', '/data', '--run-kind', $RunKind, '--output-dir', "/out/$runName")
-if ($RunKind -eq 'pilot') { $dockerArguments += @('--rows','1000','--replications','2','--warmups','1') }
+if ($RunKind -eq 'pilot') {
+    $dockerArguments += @('--rows',[string]$PilotRows,'--replications',[string]$PilotPairs,'--warmups',[string]$PilotWarmups)
+}
 @{ container=$containerName; image=$Image; arguments=$dockerArguments; hostOS=[Environment]::OSVersion.VersionString;
    processor=(Get-CimInstance Win32_Processor | Select-Object Name,NumberOfCores,NumberOfLogicalProcessors);
    physicalMemoryBytes=(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory } |
@@ -41,6 +51,5 @@ Copy-Item -LiteralPath (Join-Path $evidenceDir 'launch.json'),(Join-Path $eviden
 & docker run --rm --cpus=2 --memory=4g --memory-swap=4g --mount "type=bind,source=$resolvedResults,target=/out" $Image python scripts/analyze_results.py --run-dir "/out/$runName"
 if ($LASTEXITCODE -ne 0) { throw 'Analysis failed; benchmark CSVs retained' }
 Write-Host "Completed run: $runDir"
-Write-Host "Readable report: $(Join-Path $runDir 'analysis\Laporan Terbaca\Laporan Benchmark.html')"
 Write-Host "Excel CSV: $(Join-Path $runDir 'analysis\Laporan Terbaca\Ringkasan Benchmark.csv')"
 Write-Host "Stopped benchmark container retained: $containerName"

@@ -44,24 +44,27 @@ tanpa mengunggah ulang bobot model dan preprocessing.
 
 ## Hasil pilot
 
-Uji pendahuluan menggunakan 128 transaksi per replikasi, dua pasangan A/B
+Uji pendahuluan menggunakan 1.000 transaksi per replikasi, enam pasangan A/B
 untuk setiap kombinasi model dan batch, serta satu warm-up per skenario.
-Latency adalah waktu seluruh 128 transaksi; overhead dihitung per transaksi.
+Setiap kombinasi terdiri atas tiga urutan AB dan tiga BA.
+Latency adalah waktu seluruh 1.000 transaksi; overhead dihitung per transaksi.
 
 | Model | Batch | Latency A (s) | Latency B (s) | Overhead (ms/transaksi) |
 | --- | ---: | ---: | ---: | ---: |
-| M1 | 1 | 0.2187 | 5.7319 | 43.0724 |
-| M1 | 10 | 0.0571 | 2.8140 | 21.5386 |
-| M1 | 50 | 0.0137 | 2.6558 | 20.6416 |
-| M1 | 100 | 0.0135 | 2.7557 | 21.4235 |
-| M2 | 1 | 0.0592 | 0.5772 | 4.0470 |
-| M2 | 10 | 0.0093 | 0.2577 | 1.9407 |
-| M2 | 50 | 0.0031 | 0.2300 | 1.7726 |
-| M2 | 100 | 0.0022 | 0.2522 | 1.9533 |
+| M1 | 1 | 1.8001 | 46.9017 | 45.1016 |
+| M1 | 10 | 0.4660 | 22.3481 | 21.8821 |
+| M1 | 50 | 0.1116 | 21.7341 | 21.6224 |
+| M1 | 100 | 0.0558 | 20.8149 | 20.7591 |
+| M2 | 1 | 0.5458 | 5.2484 | 4.7026 |
+| M2 | 10 | 0.0788 | 2.0597 | 1.9809 |
+| M2 | 50 | 0.0187 | 1.9131 | 1.8945 |
+| M2 | 100 | 0.0096 | 2.0022 | 1.9925 |
 
 [Ringkasan pilot CSV](results/pilot/Ringkasan%20Pilot.csv).
-Hasil ini digunakan untuk memeriksa jalannya program. Pengambilan data utama
+Hasil ini digunakan untuk memeriksa jalannya program dan variasi awal pengukuran. Pengambilan data utama
 akan dilakukan pada sesi terpisah dengan replikasi yang lebih banyak.
+CV latency baseline berkisar 4,86–31,49% pada delapan kombinasi, sehingga
+variasinya masih perlu ditinjau sebelum pengambilan data utama.
 
 ## File program
 
@@ -94,9 +97,9 @@ Berkas berada di folder [results/pilot](results/pilot).
 
 | File | Isi |
 | --- | --- |
-| [Ringkasan Pilot.csv](results/pilot/Ringkasan%20Pilot.csv) | Rerata metrik untuk delapan kombinasi model dan batch; dapat dibuka di Excel. |
-| [benchmark_raw.csv](results/pilot/benchmark_raw.csv) | Hasil tiap pengukuran A atau B, sebanyak 32 pengamatan. |
-| [benchmark_pairs.csv](results/pilot/benchmark_pairs.csv) | Hasil 16 pasangan A/B, selisih waktu, serta nilai CPU dan memori tiap skenario. |
+| [Ringkasan Pilot.csv](results/pilot/Ringkasan%20Pilot.csv) | Rerata metrik dan CV latency untuk delapan kombinasi model dan batch; dapat dibuka di Excel. |
+| [benchmark_raw.csv](results/pilot/benchmark_raw.csv) | Hasil tiap pengukuran A atau B, sebanyak 96 pengamatan. |
+| [benchmark_pairs.csv](results/pilot/benchmark_pairs.csv) | Hasil 48 pasangan A/B, selisih waktu, serta nilai CPU dan memori tiap skenario. |
 | [run_manifest.json](results/pilot/run_manifest.json) | Konfigurasi sesi, identitas model, serta checksum data dan kode. |
 | [M1_manifest.json](results/pilot/M1_manifest.json) | Struktur M1, lingkungan eksekusi, warm-up, dan catatan pengukurannya. |
 | [M2_manifest.json](results/pilot/M2_manifest.json) | Struktur M2, lingkungan eksekusi, warm-up, dan catatan pengukurannya. |
@@ -122,10 +125,10 @@ Dengan Docker Desktop aktif, jalankan dari folder kode:
 
 ```powershell
 docker build -f Dockerfile.runtime -t fraud-benchmark:primary-20261016 .
-.\run-docker.ps1 -DataPath "D:\Data\Uji Bersama Dua Model" -RunKind pilot
+.\run-docker.ps1 -DataPath "D:\Data\Uji Bersama Dua Model" -RunKind pilot -PilotPairs 6
 ```
 
-Pilot bawaan perintah memakai 1.000 transaksi. Untuk pengambilan data utama,
+Perintah tersebut memakai 1.000 transaksi dan enam pasangan per model-batch. Untuk pengambilan data utama,
 ganti `-RunKind pilot` menjadi `-RunKind formal`. Protokol formal memakai
 1.000 transaksi, 30 pasangan per model-batch, dan lima warm-up per skenario.
 Container diberi kuota dua CPU dan 4 GiB tanpa swap. Alokasi WSL/host perlu
